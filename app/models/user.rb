@@ -55,5 +55,9 @@ class User < ActiveRecord::Base
   def lifetime_hours
     self.diaries.inject(0) {|sum, x| sum + x.hours}
   end
+
+  def self.mvp
+    User.all.max {|a,b| a.lifetime_hours <=> b.lifetime_hours}
+  end
   
 end

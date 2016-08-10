@@ -10,14 +10,18 @@
     <th>Project</th>
     <th>Day</th>
     <th>Hours</th>
-    <th>Delete</th>
+    <% if is_current_diary %>
+      <th>Delete</th>
+    <% end %>
   </tr>
   <% @diary.entries.each do |e| %>
   <tr>
     <td><%= e.project.name %></td>
     <td><%= e.day %></td>
     <td><%= e.hours %></td>
-    <td><%= link_to "DELETE",  entry_path(e), method: 'delete' %></td>
+    <% if is_current_diary %>
+      <td><%= link_to "DELETE",  entry_path(e), method: 'delete' %></td>
+    <% end %>
   </tr>
   <% end %>
 </table>
