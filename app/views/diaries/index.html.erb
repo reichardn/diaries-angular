@@ -1,0 +1,16 @@
+<h2>Here are all of your diaries</h2>
+<h4>
+  Hours worked this week = <%= current_user.current_period_hours %><br>
+  Lifetime hours worked = <%= current_user.lifetime_hours %><br>
+  <% if current_user.worst_week %>
+    Worst Week = <%= current_user.worst_week.hours %>
+  <% end %>
+</h4>
+
+<ul>
+  <% @diaries.each do |d| %>
+    <li><%= link_to "Total Hours: #{d.hours}", diary_path(d) %></li>
+  <% end %>
+</ul>
+
+

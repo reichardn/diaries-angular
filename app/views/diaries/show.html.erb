@@ -1,0 +1,55 @@
+<h1><%= Diary %></h1>
+
+<% if notice %>
+  <p><%= notice %></p> 
+<% end %>
+
+<% if @diary.hours > 0 %>
+<table border='1'>
+  <tr>
+    <th>Project</th>
+    <th>Day</th>
+    <th>Hours</th>
+    <th>Delete</th>
+  </tr>
+  <% @diary.entries.each do |e| %>
+  <tr>
+    <td><%= e.project.name %></td>
+    <td><%= e.day %></td>
+    <td><%= e.hours %></td>
+    <td><%= link_to "DELETE",  entry_path(e), method: 'delete' %></td>
+  </tr>
+  <% end %>
+</table>
+<% end %>
+
+<p>Total Hours: <strong><%= @diary.hours %></strong> </p>
+
+<% if is_current_diary %>
+  <%= button_to 'Submit Diary', submit_path %>
+  
+  <h4>Quick Add Entry From Existing Project:</h4>
+  
+  <%= form_for @entry, url: diary_entries_path(@diary) do |f|%>
+
+    <%= f.label :day %>
+    <%= f.select :day, Entry.days.keys %><br>
+
+    <%= f.label :project %>
+      Existing: <%= f.collection_select :project_id, Project.all, :id, :name, {:include_blank => "Please select"}
+ %><br>
+   
+    <%= f.fields_for :project, @project do |proj| %> or New (name):<%= proj.text_field :name %><br/>
+    <% end %><br>
+
+    <%= f.label :minutes %>
+    <%= f.number_field :minutes, min: 1 %><br>
+
+    <%= f.submit "Submit Entry" %>
+  <% end %>
+
+<% else %>
+  
+  <h4>This diary has already been submitted</h4>
+  <%= button_to 'Go to Current Diary', diary_path(current_diary), method: 'get' %>
+<% end %>
