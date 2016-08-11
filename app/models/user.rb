@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 
   def make_current_diary
     diary = self.diaries.create
+    diary.update(name: "Diary for #{diary.created_at}")
     self.current_diary = diary
     diary
   end

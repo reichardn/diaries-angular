@@ -9,7 +9,7 @@
 
 <ul>
   <% @diaries.each do |d| %>
-    <li><%= link_to "Total Hours: #{d.hours}", diary_path(d) %></li>
+    <li><%= d.name %><%= link_to "Total Hours: #{d.hours}", diary_path(d) %></li>
   <% end %>
 </ul>
 
