@@ -1,4 +1,4 @@
-class Diary < ActiveRecord::Base
+  class Diary < ActiveRecord::Base
 
   belongs_to :user
   has_many :entries
