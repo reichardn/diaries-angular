@@ -41,8 +41,7 @@
     <%= f.select :day, Entry.days.keys %><br>
 
     <%= f.label :project %>
-      Existing: <%= f.collection_select :project_id, Project.all, :id, :name, {:include_blank => "Please select"}
- %><br>
+      Existing: <%= f.collection_select :project_id, Project.all, :id, :name, {:include_blank => "Please select"} %><br>
    
     <%= f.fields_for :project, @project do |proj| %> or New (name):<%= proj.text_field :name %><br/>
     <% end %><br>
