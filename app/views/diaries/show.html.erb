@@ -48,12 +48,13 @@
 
     <%= f.label :minutes %>
     <%= f.number_field :minutes, min: 1 %><br>
-
     <%= f.submit "Submit Entry" %>
   <% end %>
 
 <% else %>
   
+<% if @user && !@user.admin %>
   <h4>This diary has already been submitted</h4>
-  <%= button_to 'Go to Current Diary', diary_path(current_diary), method: 'get' %>
+    <%= button_to 'Go to Current Diary', diary_path(current_diary), method: 'get' %>
+  <% end %>
 <% end %>

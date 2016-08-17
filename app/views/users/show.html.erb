@@ -1,0 +1,12 @@
+<a href="#" class="js-next" data-id="<%=@user.id%>">Next User</a>
+<h1 class="userEmail">User <%= @user.id %>: <%= @user.email %></h1>
+<button class="view-diaries">View All <%= @user.diaries.length %> Diaries</button>
+
+<div class="diaries-holder"><ul class="diaries"></ul></div>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    bindUserClickEvents();
+  });
+</script>

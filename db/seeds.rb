@@ -16,3 +16,4 @@ project = Project.create(name: 'blockbuster')
 
 diary.entries.create(project: project, minutes: 60, day: :monday)
 
+# user = User.create(email:'admin@admin.com', password:'12345678', password_confirmation:'12345678')

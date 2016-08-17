@@ -1,3 +1,3 @@
 class DiarySerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :created_at
 end

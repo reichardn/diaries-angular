@@ -4,10 +4,14 @@ class DiaryPolicy < ApplicationPolicy
     def resolve
       scope.where(user: user)
     end
+  end
+
+  def show?
+    user.admin || record.try(:user) == user
   end  
 
   def index?
-    record.try(:user) == user
+    user.admin || record.try(:user) == user
   end
 
 end
