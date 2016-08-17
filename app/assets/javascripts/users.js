@@ -20,14 +20,13 @@ User.fromJSON = function (data) {
 }
 
 var bindShowUsersButton = function() {
-  $(".users-list").on("click", function(e) {
-    var id = parseInt($(".js-next").attr("data-id"));
-    $(".diaries").empty();
-    $.get("/users/" + id + ".json", function(data) {
-      var diaries = data['diaries'];
-      $.each(diaries, function(i, v) {
-        var html = "<li><a href='/diaries/" + v['id'] +"'>" +  v['created_at'] + "</a></li>";
-        $('.diaries').append(html);
+  $(".view-users").on("click", function(e) {
+    $(".users-list").empty();
+    $.get("/users.json", function(data) {
+      $.each(data, function(i, v) {
+        var user = User.fromJSON(v);
+        var html = "<li><a href='/users/" + user.id +"'>" +  user.printName() + "</a></li>";
+        $('.users-list').append(html);
       })
     });
     e.preventDefault();
@@ -40,7 +39,7 @@ var bindNextButton = function() {
     $.get("/users/" + nextId + ".json", function(data) {
       var user = User.fromJSON(data);
       $(".userEmail").text(user.printName());
-      $(".diaries").empty();
+      $(".diaries").html('<li>...</li>');
       $(".view-diaries").text("View All " + user.diariesLength() + " Diaries");
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
