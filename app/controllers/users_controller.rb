@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def show
     authorize @user
+    @last = User.last.id
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @user }

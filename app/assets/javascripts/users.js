@@ -36,6 +36,9 @@ var bindShowUsersButton = function() {
 var bindNextButton = function() {
   $(".js-next").on("click", function(e) {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    if (nextId > parseInt($(".js-next").attr("data-last"))) {
+      nextId = 1;
+    }
     $.get("/users/" + nextId + ".json", function(data) {
       var user = User.fromJSON(data);
       $(".userEmail").text(user.printName());

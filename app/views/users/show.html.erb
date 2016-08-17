@@ -1,4 +1,4 @@
-<a href="#" class="js-next" data-id="<%=@user.id%>">Next User</a>
+<a href="#" class="js-next" data-id="<%=@user.id%>" data-last="<%= @last %>">Next User</a>
 <h1 class="userEmail">User <%= @user.id %>: <%= @user.email %></h1>
 <button class="view-diaries">View All <%= @user.diaries.length %> Diaries</button>
 
