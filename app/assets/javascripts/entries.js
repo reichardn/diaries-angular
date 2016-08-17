@@ -3,7 +3,7 @@ class Entry {
   constructor(data) {
     this.id = data['id'];
     this.day = data['day'];
-    this.hours = data['minutes']/60.0;
+    this.hours = (data['minutes']/60.0).toFixed(2);
     this.project = data['project']['name'];
   }
   makeHTML() {
@@ -18,7 +18,7 @@ class Entry {
 }
 
 var bindForm = function() {
-  $('form').submit(function(event) {
+  $('#new_entry').submit(function(event) {
     event.preventDefault();
 
     var values = $(this).serialize();

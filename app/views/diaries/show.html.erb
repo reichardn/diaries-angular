@@ -5,8 +5,7 @@
   <p><%= notice %></p> 
 <% end %>
 
-<% if @diary.hours > 0 %>
-<table class='entries' border='1'>
+<table class="entries" border='1'>
   <tr>
     <th>Project</th>
     <th>Day</th>
@@ -25,8 +24,8 @@
     <% end %>
   </tr>
   <% end %>
+  
 </table>
-<% end %>
 
 <p>Total Hours: <strong><%= @diary.hours %></strong> </p>
 
@@ -54,7 +53,7 @@
 
 <% else %>
   
-<% if @user && !@user.admin %>
+<% if !current_user.admin %>
   <h4>This diary has already been submitted</h4>
     <%= button_to 'Go to Current Diary', diary_path(current_diary), method: 'get' %>
   <% end %>
