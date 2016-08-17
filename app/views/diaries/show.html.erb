@@ -6,7 +6,7 @@
 <% end %>
 
 <% if @diary.hours > 0 %>
-<table border='1'>
+<table class='entries' border='1'>
   <tr>
     <th>Project</th>
     <th>Day</th>
@@ -37,6 +37,7 @@
   
   <%= form_for @entry, url: diary_entries_path(@diary) do |f|%>
 
+    <%= f.hidden_field :diary_id, value: @diary.id %>
     <%= f.label :day %>
     <%= f.select :day, Entry.days.keys %><br>
 
@@ -58,3 +59,10 @@
     <%= button_to 'Go to Current Diary', diary_path(current_diary), method: 'get' %>
   <% end %>
 <% end %>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+   bindForm();
+  });
+</script>

@@ -12,6 +12,7 @@ class User {
   diariesLength() {
     return this.diaries.length
   }
+
 }
 
 User.fromJSON = function (data) {

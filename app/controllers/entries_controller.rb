@@ -4,13 +4,12 @@ class EntriesController < ApplicationController
 
   def create
     entry = Entry.new(entry_params)
-    entry.diary_id = params[:diary_id]
     if !params[:entry][:project_id].blank?
       entry.project_id = params[:entry][:project_id]
     end
     entry.save
     set_errors_message(entry)
-    redirect_to diary_path(params[:diary_id])
+    render json: entry, status: 201
   end
 
   def destroy
@@ -22,7 +21,7 @@ class EntriesController < ApplicationController
   private 
 
   def entry_params
-    params.require(:entry).permit(:day, :minutes, :project_id, project_attributes: [:name])
+    params.require(:entry).permit(:diary_id, :day, :minutes, :project_id, project_attributes: [:name])
   end
 
   def set_entry!
