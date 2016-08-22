@@ -28,6 +28,9 @@ var bindForm = function() {
     posting.done(function(data) {
       var entry = new Entry(data);
       $('.entries').append(entry.makeHTML());
+      var hours = Number($('#hours').text());
+      hours += Number(entry.hours);
+      $('#hours').text(hours);
     });
 
   }); 

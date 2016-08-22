@@ -1,19 +1,25 @@
-class User {
+// function Animal (name) {
+//   this.name = name;  
+// }
+// Animal.prototype.speak = function () {
+//   console.log(this.name + ' makes a noise.');
+// }
 
-  constructor(id, email, diaries) {
-    this.id = id;
-    this.email = email;
-    this.diaries = diaries;
-  }
-  printName() {
-    return "User " + this.id + ": " + this.email;
-  }
 
-  diariesLength() {
-    return this.diaries.length
-  }
-
+function User(id, email, diaries) {
+  this.id = id;
+  this.email = email;
+  this.diaries = diaries;
 }
+
+User.prototype.printName = function() {
+  return "User " + this.id + ": " + this.email;
+}
+
+User.prototype.diariesLength = function() {
+  return this.diaries.length
+}
+
 
 User.fromJSON = function (data) {
   var user = new User(data['id'], data['email'], data['diaries']);

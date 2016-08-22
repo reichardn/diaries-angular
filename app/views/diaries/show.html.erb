@@ -27,7 +27,7 @@
   
 </table>
 
-<p>Total Hours: <strong><%= @diary.hours %></strong> </p>
+<p>Total Hours: <strong><div id='hours'><%= @diary.hours %></div></strong> </p>
 
 <% if is_current_diary %>
   <%= button_to 'Submit Diary', submit_path %>
